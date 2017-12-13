@@ -37,15 +37,16 @@ var beautify = require('gulp-beautify');
 var copyDir = require('copy-dir');
 
 //copyDir.sync('./report/themes', './node_modules/dalek-reporter-html/themes');
-var currentDate=new Date();
+var currentDate = new Date();
 
 var scriptVer = "?v" + pkg.version + "." + Math.floor(Date.now() / 1000);
 var banner = ['/**',
 	' * <%= pkg.name %> - <%= pkg.description %>',
-	' * @version '+scriptVer,
+	' * @version ' + scriptVer,
 	currentDate,
 	' */',
-	''].join('\n');
+	''
+].join('\n');
 var log = function (msg) {
 	gutil.log('App : ', gutil.colors.magenta(msg));
 };
@@ -64,11 +65,10 @@ var replaceXmlTagInFile = function (file, elementName, attr, value, newAttrExpre
 		patterns: [{
 			match: new RegExp("<" + elementName + " *" + attr + "=\"" + value + "\"*[^<]*(?:(?!<\/" + elementName + ">)<[^<]*)*(.|\n)<\/" + elementName + ">"),
 			replacement: "<" + elementName + (removeOldAttr ? "" : ("  " + attr + "=\"" + value + "\"")) + (newAttrExpression ? "  " + newAttrExpression + "  " : "") + ">" + body + "</" + elementName + ">" + postString
-		}
-		]
+		}]
 	});
 };
-var replaceXmlTagInFileCompletely = function ( elementName, attr, value, body) {
+var replaceXmlTagInFileCompletely = function (elementName, attr, value, body) {
 	var newAttrExpression = "";
 	attr = attr || 'id';
 	elementName = elementName || 'script';
@@ -76,8 +76,7 @@ var replaceXmlTagInFileCompletely = function ( elementName, attr, value, body) {
 		patterns: [{
 			match: new RegExp("<" + elementName + " *" + attr + "=\"" + value + "\"*[^<]*(?:(?!<\/" + elementName + ">)<[^<]*)*(.|\n)<\/" + elementName + ">"),
 			replacement: body
-		}
-		]
+		}]
 	});
 };
 var replaceScriptTagInFile = function (file, scriptId, body, dest, postString) {
@@ -86,7 +85,7 @@ var replaceScriptTagInFile = function (file, scriptId, body, dest, postString) {
 };
 
 var replaceScriptTagInFileCompletely = function (scriptId, body) {
-	return replaceXmlTagInFileCompletely( "script", "id", scriptId, body);
+	return replaceXmlTagInFileCompletely("script", "id", scriptId, body);
 };
 
 var replaceXmlAttribute = function (name, attr, value) {
@@ -124,7 +123,7 @@ var helpers = {
 
 	readFromFile: function (fileName) {
 		try {
-			var content = fs.readFileSync(fileName, "utf8");//.replace(unprintables, "");
+			var content = fs.readFileSync(fileName, "utf8"); //.replace(unprintables, "");
 			return content;
 		} catch (e) {
 			console.error("FILE READ ERROR: from : " + fileName);
@@ -193,14 +192,14 @@ var mergeJsonServerMiddleware = function (maps) {
 			'/dosomething': {
 				method: 'post',
 				handler: function (req, res) {
-					console.log(req.body);				
-					return res.json( req.body);
+					console.log(req.body);
+					return res.json(req.body);
 				}
 			},
 			'/getsomething': {
 				method: 'get',
 				handler: function (req, res) {
-					var db = require('./db.json');					
+					var db = require('./db.json');
 					return res.jsonp(db);
 				}
 			}
@@ -236,8 +235,7 @@ var hasInstalledModule = function (name) {
 helpers.serve(hconfig.landing_page, setUpWebserverTasks.port, false, mergeJsonServerMiddleware(camp.concat([{
 	from: "/call/to/this",
 	to: "/this"
-}
-])));
+}])));
 
 
 var validateFileExist = function (file) {
@@ -279,7 +277,7 @@ var validateFileContainsOnce = function (file, contents) {
 var validateFileContains = function (file, contents) {
 
 	if (helpers.fileContains(file, contents)) {
-		  logsuccess(file + " contains " + contents + ". Awesome!");
+		logsuccess(file + " contains " + contents + ". Awesome!");
 		return '';
 	} else {
 		console.info('Checking  if "' + file + '" has "' + contents + '" ...');
@@ -299,7 +297,7 @@ var validateFileDoesNotContains = function (file, contents) {
 		return message + "'\n\r";
 
 	} else {
-		  logsuccess(file + " contains " + contents + ". Awesome!");
+		logsuccess(file + " contains " + contents + ". Awesome!");
 		return '';
 	}
 };
@@ -342,12 +340,14 @@ var handlevalidateResult = function (errorFeedBacks) {
 };
 
 gulp.task('validate_deployment', function () {
-	handlevalidateResult(function(){
+	handlevalidateResult(function () {
 
 	});
 });
+
 function getFilesFromDir(dir, fileTypes) {
 	var filesToReturn = [];
+
 	function walkDir(currentPath) {
 		var files = fs.readdirSync(currentPath);
 		for (var i in files) {
@@ -364,8 +364,7 @@ function getFilesFromDir(dir, fileTypes) {
 }
 
 
-gulp.task('default', ['validate-build'], function () { 
+gulp.task('default', ['validate-build'], function () {
 
 
 });
-

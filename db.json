@@ -1,9 +1,9 @@
 {
-	"getsomething" : {
-		"Errors" : null,
-		"Data" : {},
-		"MessageCode" : 0,
-		"IsSuccess" : true,
-		"Message" : null	
-	}	
+	"getsomething": {
+		"Errors": null,
+		"Data": {},
+		"MessageCode": 0,
+		"IsSuccess": true,
+		"Message": null
+	}
 }
