@@ -1,0 +1,29 @@
+# use glob syntax
+syntax: glob
+.hg/*
+#custom
+dist
+dist-*
+tmp/*
+node_modules/*
+test-spec/*
+packages/*
+tools/*
+updates.txt
+wp-content/*
+bin/*
+packages.config
+crossdomain.xml
+archive/*
+!tools/*
+!build/*
+.htaccess
+.settings/*
+404.html
+favicon.ico
+robots.txt
+oldBuild.ps1
+LastBuilt.txt
+LICENSE.md
+debug.log
+temp/
