@@ -116,9 +116,6 @@ function occurrences(string, subString, allowOverlapping) {
 	}
 	return n;
 }
-
-
-
 var helpers = {
 
 	readFromFile: function (fileName) {
@@ -181,10 +178,11 @@ var helpers = {
 	}
 };
 
-gulp.task('man', tasks);
+
+/*
 var mergeJsonServerMiddleware = function (maps) {
 	var jsonServer = require('gulp-json-srv');
-	var jsonPort = setUpWebserverTasks.port + 1000;
+	var jsonPort = 8808;
 	jsonServer.start({
 		port: jsonPort,
 		data: require('./db.json'),
@@ -219,6 +217,7 @@ var mergeJsonServerMiddleware = function (maps) {
 		return allMaps;
 	};
 };
+*/
 
 
 var hasInstalledModule = function (name) {
@@ -232,10 +231,12 @@ var hasInstalledModule = function (name) {
 	}
 };
 
-helpers.serve(hconfig.landing_page, setUpWebserverTasks.port, false, mergeJsonServerMiddleware(camp.concat([{
+/*
+helpers.serve("./index.html", 8808, false, mergeJsonServerMiddleware([{
 	from: "/call/to/this",
 	to: "/this"
-}])));
+}]));
+*/
 
 
 var validateFileExist = function (file) {
@@ -338,13 +339,6 @@ var handlevalidateResult = function (errorFeedBacks) {
 		});
 	}
 };
-
-gulp.task('validate_deployment', function () {
-	handlevalidateResult(function () {
-
-	});
-});
-
 function getFilesFromDir(dir, fileTypes) {
 	var filesToReturn = [];
 
@@ -363,8 +357,15 @@ function getFilesFromDir(dir, fileTypes) {
 	return filesToReturn;
 }
 
-
-gulp.task('default', ['validate-build'], function () {
+gulp.task('man', tasks);
+gulp.task('validate_deployment', function () {
+	/*
+	handlevalidateResult(function () {
+       return false;
+	});
+	*/
+});
+gulp.task('default', ['validate_deployment'], function () {
 
 
 });
