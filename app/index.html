@@ -1,0 +1,7 @@
+{% import "app/views/parent.html" as forms %}
+{{ name | capitalize }}
+{{ forms.label('Username') }}
+{{ forms.field('user') }}
+{{ forms.label('Password') }}
+{{ forms.field('pass', type='password') }}
+
